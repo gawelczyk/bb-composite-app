@@ -5,20 +5,28 @@ App.Views.UserView = Backbone.View.extend({
         this.model.on("destroy", this.destroy, this);
     },
 
+    template: Handlebars.compile('<h3>Name: {{name}}</h3><div>Age: {{age}} <a href="{{url}}">{{url}}</a></div><div><input type="text"/><button class="js-button">click me</button> <button class="js-destroy">destroy</button> </div>'),
+
     render: function () {
-        this.$el.html("<h3>Name: " + this.model.get('name') + "</h3>"
-            + "<div>url: <a href='" + this.model.get('url') + "'>" + this.model.get('url') + "</a> "
-            + "Age: " + this.model.get('age') + "</div>"
-            + "<div><input type='text'/><button class='js-button'>click me</button></div>");
+        var json = this.model.toJSON();
+        var html = this.template(json);
+        this.$el.html(html);
+
+//        this.$el.html("<h3>Name: " + this.model.get('name') + "</h3>"
+//            + "<div>url: <a href='" + this.model.get('url') + "'>" + this.model.get('url') + "</a> "
+//            + "Age: " + this.model.get('age') + "</div>"
+//            + "<div><input type='text'/><button class='js-button'>click me</button> <button class='js-destroy'>destroy</button></div>");
+
         return this;
     },
 
-    destroy: function () {
+    onDestroy: function () {
         console.log('destroy called');
     },
 
     events: {
-        "click .js-button": "onclickButton"
+        "click .js-button": "onclickButton",
+        "click .js-destroy": "onDestroy"
     },
 
     onclickButton: function () {
