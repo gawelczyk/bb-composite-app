@@ -5,7 +5,7 @@ App.Views.UserView = Backbone.View.extend({
         this.model.on("destroy", this.destroy, this);
     },
 
-    template: Handlebars.compile('<h3>Name: {{name}}</h3><div>Age: {{age}} <a href="{{url}}">{{url}}</a></div><div><input type="text"/><button class="js-button">click me</button> <button class="js-destroy">destroy</button> </div>'),
+    template: Handlebars.compile($('#user-template').html()),
 
     render: function () {
         var json = this.model.toJSON();
@@ -22,6 +22,9 @@ App.Views.UserView = Backbone.View.extend({
 
     onDestroy: function () {
         console.log('destroy called');
+    },
+
+    destroy: function () {
     },
 
     events: {

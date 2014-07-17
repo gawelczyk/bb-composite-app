@@ -7,6 +7,15 @@
   <script src="vendor/handlebars.js"></script>
 
   <!-- handlebars templates -->
+    <script id="user-template" type="text/x-handlebars-template">
+        <h3>Name: {{name}}</h3>
+
+        <div>Age: {{age}} <a href="{{url}}">{{url}}</a></div>
+        <div><input type="text"/>
+            <button class="js-button">click me</button>
+            <button class="js-destroy">destroy</button>
+        </div>
+    </script>
 
   <!-- app scripts -->
   <script src="js/namespace.js"></script>
